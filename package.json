@@ -1,0 +1,20 @@
+{
+  "name": "gemini-4-argon",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "doctor": "hyperframes doctor",
+    "inspect": "hyperframes compositions",
+    "preview": "hyperframes preview",
+    "preview:intro": "hyperframes preview compositions/intro.html",
+    "preview:part1": "hyperframes preview compositions/part1.html",
+    "preview:part2": "hyperframes preview compositions/part2.html",
+    "render:intro": "hyperframes render compositions/intro.html --output renders/intro.mp4",
+    "render:part1": "hyperframes render compositions/part1.html --output renders/part1.mp4",
+    "render:part2": "hyperframes render compositions/part2.html --output renders/part2.mp4",
+    "render:all": "hyperframes render index.html --output renders/full_video.mp4"
+  },
+  "devDependencies": {
+    "hyperframes": "^0.8.96"
+  }
+}

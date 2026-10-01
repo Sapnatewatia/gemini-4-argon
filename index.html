@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gemini 4 Argon: Master Assembly (All 3 Parts)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #020305; overflow: hidden; }
+  </style>
+</head>
+<body class="w-[1920px] h-[1080px] select-none">
+
+  <!-- MASTER ROOT TIMELINE: 27.0s (Intro) + 115.0s (Part 1) + 118.0s (Part 2) = 260.0s (04:20) -->
+  <div id="root" data-composition-id="main" data-start="0" data-duration="260.0" data-width="1920" data-height="1080" class="relative w-[1920px] h-[1080px] bg-[#020305]">
+
+    <!-- ACT 1: INTRO HOOK (0.0s to 27.0s) -->
+    <div class="clip" 
+         data-composition-id="intro" 
+         data-composition-src="compositions/intro.html" 
+         data-start="0" 
+         data-duration="27.0" 
+         data-track-index="0">
+    </div>
+
+    <!-- ACT 2: PART 1 PRIMITIVES & 1M TOKEN ENGINE (27.0s to 142.0s) -->
+    <div class="clip" 
+         data-composition-id="part1" 
+         data-composition-src="compositions/part1.html" 
+         data-start="27.0" 
+         data-duration="115.0" 
+         data-track-index="1">
+    </div>
+
+    <!-- ACT 3: PART 2 BENCHMARKS, FAIRWIND & FINAL VERDICT (142.0s to 260.0s) -->
+    <div class="clip" 
+         data-composition-id="part2" 
+         data-composition-src="compositions/part2.html" 
+         data-start="142.0" 
+         data-duration="118.0" 
+         data-track-index="2">
+    </div>
+
+  </div>
+
+</body>
+</html>
