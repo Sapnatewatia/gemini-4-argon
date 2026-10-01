@@ -1,4 +1,4 @@
-name: Gemini-4-argon
+name: Render Video Pipeline (30 FPS)
 
 on:
   workflow_dispatch:
@@ -27,29 +27,30 @@ jobs:
         with:
           node-version: 22
 
-      - name: 3. Install FFmpeg
+      - name: 3. Install FFmpeg & HyperFrames Globally (Runs Once)
         run: |
           sudo apt-get update -y
           sudo apt-get install -y ffmpeg
+          npm install -g hyperframes
 
       - name: 4. Ensure Headless Browser Binaries
-        run: npx hyperframes browser ensure
+        run: hyperframes browser ensure
 
       - name: 5. Render Act 1 - Intro Hook (27s @ 30 FPS)
         run: |
           mkdir -p renders
           echo "🎬 [1/3] Rendering Intro..."
-          npx hyperframes render --composition compositions/intro.html --output renders/intro.mp4 --quality ${{ github.event.inputs.quality || 'high' }} --fps 30
+          hyperframes render --composition compositions/intro.html --output renders/intro.mp4 --quality ${{ github.event.inputs.quality || 'high' }} --fps 30
 
       - name: 6. Render Act 2 - Part 1 Primitives (115s @ 30 FPS)
         run: |
           echo "🎬 [2/3] Rendering Part 1..."
-          npx hyperframes render --composition compositions/part1.html --output renders/part1.mp4 --quality ${{ github.event.inputs.quality || 'high' }} --fps 30
+          hyperframes render --composition compositions/part1.html --output renders/part1.mp4 --quality ${{ github.event.inputs.quality || 'high' }} --fps 30
 
       - name: 7. Render Act 3 - Part 2 Arena & Verdict (118s @ 30 FPS)
         run: |
           echo "🎬 [3/3] Rendering Part 2..."
-          npx hyperframes render --composition compositions/part2.html --output renders/part2.mp4 --quality ${{ github.event.inputs.quality || 'high' }} --fps 30
+          hyperframes render --composition compositions/part2.html --output renders/part2.mp4 --quality ${{ github.event.inputs.quality || 'high' }} --fps 30
 
       - name: 8. Stitch All 3 Acts into Complete Video (Lossless 1s Concat)
         run: |
