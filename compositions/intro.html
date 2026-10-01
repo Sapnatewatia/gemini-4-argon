@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KCMv1.1 GEMINI 4 ARGON: 7-MICROSHOT KINETIC INTRO</title>
+
+  <!-- TAILWIND & GSAP CORE ENGINE -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            voidBlack: '#020305',
+            kaiAmber: '#FACC15',
+            kaiSky: '#38BDF8',
+            kaiBlue: '#2563EB',
+            kaiRed: '#EF4444',
+            kaiEmerald: '#10B981',
+            kaiZinc: '#27272A'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #020305; color: #fff; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .perspective-stage { perspective: 1600px; transform-style: preserve-3d; }
+    .preserve-3d { transform-style: preserve-3d; }
+    .tabular-num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+    /* Volumetric Laser Framing (No generic card boxes!) */
+    .laser-bracket { position: relative; }
+    .laser-bracket::before { content: ""; position: absolute; top: -10px; left: -10px; width: 30px; height: 30px; border-top: 3.5px solid #38BDF8; border-left: 3.5px solid #38BDF8; filter: drop-shadow(0 0 10px #38BDF8); }
+    .laser-bracket::after { content: ""; position: absolute; bottom: -10px; right: -10px; width: 30px; height: 30px; border-bottom: 3.5px solid #38BDF8; border-right: 3.5px solid #38BDF8; filter: drop-shadow(0 0 10px #38BDF8); }
+
+    /* SVG Volumetric Glows */
+    .glow-cyan { filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.7)); }
+    .glow-emerald { filter: drop-shadow(0 0 30px rgba(16, 185, 129, 0.7)); }
+    .glow-red { filter: drop-shadow(0 0 30px rgba(239, 68, 68, 0.8)); }
+    .glow-amber { filter: drop-shadow(0 0 30px rgba(250, 204, 21, 0.7)); }
+
+    /* Physical Rubber Stamp Primitives */
+    .stamp-red {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 5px solid #EF4444;
+      color: #EF4444;
+      background: rgba(239, 68, 68, 0.2);
+      box-shadow: 0 0 85px rgba(239, 68, 68, 0.8);
+    }
+
+    .stamp-emerald {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 5px solid #10B981;
+      color: #10B981;
+      background: rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 85px rgba(16, 185, 129, 0.8);
+    }
+
+    /* Subtitles (CMsubs v4.8) */
+    mark { background-color: rgba(56, 189, 248, 0.15); color: #38BDF8; padding: 2px 6px; border-radius: 4px; }
+    mark.amber { background-color: rgba(250, 204, 21, 0.15); color: #FACC15; }
+    mark.emerald { background-color: rgba(16, 185, 129, 0.15); color: #10B981; }
+    mark.red { background-color: rgba(239, 68, 68, 0.15); color: #EF4444; }
+  </style>
+</head>
+
+<body class="w-[1920px] h-[1080px] select-none">
+
+  <!-- COMPOSITION ROOT: Exactly 27.0s Locked Duration (15.0s Audio 1 + 12.0s Audio 2) -->
+  <div data-hf-id="hf-ns08" id="intro-root" data-composition-id="intro" data-start="0" data-duration="27.0" data-width="1920" data-height="1080" class="relative w-[1920px] h-[1080px] bg-voidBlack overflow-hidden">
+
+    <!-- DECLARATIVE AUDIO PAYLOAD (Exact 15.0s + 12.0s) -->
+    <audio data-hf-id="hf-26fa" id="audio-h1" data-start="0.0" data-duration="15.0" src="../assets/audio/intro_hook_p1.mp3" preload="auto"></audio>
+    <audio data-hf-id="hf-73av" id="audio-h2" data-start="15.0" data-duration="12.0" src="../assets/audio/intro_hook_p2.mp3" preload="auto"></audio>
+
+    <!-- OFFICIAL @GCA BRANDING BUG (Top-6, Right-10) -->
+    <div data-hf-id="hf-rfk4" id="branding-bug" class="absolute top-6 right-10 px-5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md z-[100] flex items-center gap-3 opacity-0 pointer-events-none transform-gpu shadow-2xl">
+      <div data-hf-id="hf-qhgm" class="w-2.5 h-2.5 bg-kaiSky rounded-full animate-ping"></div>
+      <span data-hf-id="hf-ls1m" class="font-mono text-xs font-bold text-white tracking-widest">@GCA</span>
+    </div>
+
+    <!-- MASTER CHAPTER STINGER (Y: 20px - 95px) -->
+    <div data-hf-id="hf-xkcd" id="master-stinger" class="absolute top-5 left-0 right-0 z-[40] flex flex-col items-center pointer-events-none opacity-0 transform-gpu">
+      <div data-hf-id="hf-okjc" id="stinger-badge" class="px-5 py-0.5 rounded-full bg-kaiSky/10 border border-kaiSky/40 text-kaiSky font-mono text-[11px] font-bold tracking-[0.25em] uppercase mb-1">
+        GOOGLE DEEPMIND // FRONTIER EVENT
+      </div>
+      <h2 data-hf-id="hf-v726" id="stinger-title" class="text-3xl font-black text-white tracking-tight text-center drop-shadow-md">
+        THE 1-MILLION OUTPUT MONSTER
+      </h2>
+    </div>
+
+    <!-- 3D CAMERA RIG & PERSPECTIVE STAGE -->
+    <div data-hf-id="hf-qe65" id="camera-rig" class="absolute inset-0 w-full h-full transform-gpu origin-center perspective-stage z-[20]">
+      <div data-hf-id="hf-feg6" id="world-canvas" class="absolute inset-0 w-full h-full preserve-3d transform-gpu">
+
+        <!-- ===================================================================
+             STAGE SWEET SPOT (Y: 135px – 695px, HEIGHT: 550px, WIDTH: 1640px)
+             =================================================================== -->
+        <div data-hf-id="hf-34s5" id="stage-bounds" class="absolute top-[135px] left-0 right-0 w-[1640px] mx-auto h-[550px] relative preserve-3d flex items-center justify-center">
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 1: THE 214-DAY SILENCE & VECTOR FLATLINE (0.0s – 3.8s)
+               METAPHOR: Flatlined Telemetry Beam Erupting on the Void
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-wg3w" id="shot-1" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center opacity-0 transform-gpu pointer-events-none">
+            
+            <!-- Live Vector Oscilloscope (SVG) -->
+            <div data-hf-id="hf-a9uf" class="w-[1300px] h-36 relative flex items-center justify-center">
+              <svg data-hf-id="hf-lce6" class="w-full h-full overflow-visible" viewBox="0 0 1000 120">
+                <line data-hf-id="hf-h0yv" x1="0" y1="60" x2="1000" y2="60" stroke="#27272A" stroke-width="2.5" stroke-dasharray="10 6" />
+                <path data-hf-id="hf-5q0r" id="s1-flatline-wave" d="M 0 60 L 320 60 L 380 20 L 440 100 L 500 5 L 560 115 L 620 20 L 680 60 L 1000 60" fill="none" stroke="#38BDF8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="glow-cyan" stroke-dasharray="1200" stroke-dashoffset="1200" />
+              </svg>
+            </div>
+
+            <!-- Freestanding Staggered Chrono Typography -->
+            <div data-hf-id="hf-6g8a" class="text-center space-y-3 mt-4 font-mono">
+              <div data-hf-id="hf-2ejc" id="s1-tag" class="text-base font-bold text-kaiAmber tracking-[0.3em] uppercase opacity-0">
+                [ 214 DAYS OF CONTINUOUS RADIO SILENCE ]
+              </div>
+              <h1 data-hf-id="hf-106u" id="s1-title" class="text-6xl font-black tracking-tight text-white opacity-0">
+                THE SLEEPING GIANT AWAKENS.
+              </h1>
+              <div data-hf-id="hf-eii8" id="s1-sub" class="text-xs font-bold text-zinc-400 tracking-widest uppercase opacity-0">
+                WHILE ANTHROPIC &amp; OPENAI TRADED HEADLINES • GOOGLE BUILT BEHIND LOCKED DOORS
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 2: THE DEEPMIND SPARK & MONOLITHIC TITLE SLAM (3.8s – 7.2s)
+               METAPHOR: Starburst Expansion & Screen-Commanding Model Identity
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-51l0" id="shot-2" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center opacity-0 transform-gpu pointer-events-none" style="display: none;">
+            
+            <!-- DeepMind Animated Starburst Spark (SVG) -->
+            <div data-hf-id="hf-hb38" id="s2-spark" class="w-24 h-24 mb-4 relative flex items-center justify-center opacity-0 transform-gpu">
+              <svg data-hf-id="hf-i2gs" class="w-full h-full glow-cyan" viewBox="0 0 100 100">
+                <polygon data-hf-id="hf-i5bk" points="50,5 63,37 95,50 63,63 50,95 37,63 5,50 37,37" fill="#38BDF8" />
+                <circle data-hf-id="hf-asd8" cx="50" cy="50" r="10" fill="#FFFFFF" />
+              </svg>
+            </div>
+
+            <div data-hf-id="hf-1cs8" class="text-center space-y-3 font-mono">
+              <span data-hf-id="hf-mb1l" id="s2-dispatch" class="px-4 py-1 rounded-full bg-kaiSky/15 border border-kaiSky/40 text-kaiSky text-xs font-black tracking-[0.25em] uppercase opacity-0">
+                OFFICIAL DEEPMIND DISPATCH
+              </span>
+              <h1 data-hf-id="hf-pmrw" id="s2-hero-title" class="text-8xl font-black tracking-tight bg-gradient-to-r from-cyan-300 via-sky-400 to-indigo-400 bg-clip-text text-transparent glow-cyan opacity-0">
+                GEMINI 4 ARGON
+              </h1>
+              <div data-hf-id="hf-9jsx" id="s2-pill" class="text-sm font-bold text-zinc-300 tracking-widest uppercase opacity-0">
+                THE NEXT ERA OF FRONTIER REASONING INTELLIGENCE
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 3: 3D HARDWARE CORE SPOTLIGHT & DOCK (7.2s – 11.2s)
+               PROTOCOL: Hardware Centers (Scale 1.18x) -> Reveals -> Docks Left
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-vwt1" id="shot-3" class="absolute inset-0 w-full h-full flex items-center justify-center opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <!-- Real Hardware Image in 3D Laser Brackets -->
+            <div data-hf-id="hf-h44b" id="s3-hardware" class="absolute w-[640px] h-[480px] rounded-3xl overflow-hidden laser-bracket shadow-[0_0_100px_rgba(56,189,248,0.35)] transform-gpu opacity-0" style="transform: perspective(1200px) rotateY(0deg);">
+              <img data-hf-id="hf-hcf2" src="../assets/images/gemini4_argon_hero.jpg" class="w-full h-full object-cover" alt="Gemini 4 Argon">
+              <div data-hf-id="hf-sbz2" class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent"></div>
+              
+              <div data-hf-id="hf-2pxp" class="absolute bottom-6 left-6 right-6 flex items-center justify-between font-mono">
+                <div data-hf-id="hf-yeow">
+                  <span data-hf-id="hf-gl2y" id="s3-hw-tag" class="text-xs text-kaiSky uppercase tracking-widest block font-bold opacity-0">HARDWARE VALIDATION</span>
+                  <div data-hf-id="hf-5v69" id="s3-hw-title" class="text-2xl font-black text-white opacity-0">ARGON COMPUTE BLADE</div>
+                </div>
+                <span data-hf-id="hf-9gw0" id="s3-hw-badge" class="px-3.5 py-1 rounded bg-kaiSky/20 border border-kaiSky/60 text-kaiSky text-xs font-black uppercase opacity-0">
+                  1M OUTPUT ENGINE
+                </span>
+              </div>
+            </div>
+
+            <!-- Staggered Right Description Blade (Revealed upon Dock) -->
+            <div data-hf-id="hf-a5ed" id="s3-dock-blade" class="absolute right-8 w-[780px] h-[480px] flex flex-col justify-between py-6 font-mono opacity-0 transform-gpu">
+              <div data-hf-id="hf-xj3h" class="border-b border-white/10 pb-3">
+                <span data-hf-id="hf-pomn" class="text-xs text-zinc-400 uppercase tracking-widest font-bold">SYSTEM SPECIFICATION OVERVIEW</span>
+                <h3 data-hf-id="hf-rvdt" class="text-3xl font-black text-white mt-1">THE FRONTIER PARADIGM SHIFT</h3>
+              </div>
+              <div data-hf-id="hf-yu75" class="space-y-4 my-auto">
+                <div data-hf-id="hf-5mee" id="s3-point-1" class="p-4 rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-between opacity-0">
+                  <span data-hf-id="hf-5eqz" class="text-xs text-zinc-400 font-bold uppercase">ARCHITECTURAL TIER:</span>
+                  <span data-hf-id="hf-heb1" class="text-base font-black text-white">FLAGSHIP (NON-FLASH ENGINE)</span>
+                </div>
+                <div data-hf-id="hf-1oad" id="s3-point-2" class="p-4 rounded-2xl border border-white/10 bg-white/[0.02] flex items-center justify-between opacity-0">
+                  <span data-hf-id="hf-4gtg" class="text-xs text-zinc-400 font-bold uppercase">TARGET WORKLOAD:</span>
+                  <span data-hf-id="hf-r1b2" class="text-base font-black text-kaiSky">LARGE-SCALE SYSTEM REFACTORING</span>
+                </div>
+                <div data-hf-id="hf-lk84" id="s3-point-3" class="p-4 rounded-2xl border border-kaiEmerald/40 bg-kaiEmerald/10 flex items-center justify-between opacity-0">
+                  <span data-hf-id="hf-moiq" class="text-xs text-kaiEmerald font-bold uppercase">CORE INNOVATION:</span>
+                  <span data-hf-id="hf-lhz8" class="text-base font-black text-white">UNCONSTRAINED OUTPUT GENERATION</span>
+                </div>
+              </div>
+              <div data-hf-id="hf-oliy" class="border-t border-white/10 pt-3 flex justify-between text-xs text-zinc-500">
+                <span data-hf-id="hf-34zy">PREPARING CEILING SHATTER AUDIT</span>
+                <span data-hf-id="hf-0gty" class="text-kaiSky font-bold">HYDRAULIC GAUGE ➔</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 4: THE 1M HYDRAULIC EXPANSION & LASER SHATTER (11.2s – 15.0s)
+               METAPHOR: Shattering the 64K Wall + 1,000,000 Token Surge
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-070u" id="shot-4" class="absolute inset-0 w-full h-full flex items-center justify-between gap-12 font-mono opacity-0 transform-gpu pointer-events-none" style="display: none;">
+            
+            <!-- Left: Layman Card & Shattering Meter -->
+            <div data-hf-id="hf-zg40" class="w-[740px] h-[480px] flex flex-col justify-between py-4">
+              <div data-hf-id="hf-x86s" id="s4-header" class="border-b border-white/10 pb-3 opacity-0">
+                <span data-hf-id="hf-c5u5" class="text-xs text-zinc-400 uppercase tracking-widest font-bold">SINGLE-RESPONSE GENERATION HORIZON</span>
+                <div data-hf-id="hf-b9q2" class="text-2xl font-black text-white mt-1">ANNIHILATING THE 64K LIMIT</div>
+              </div>
+
+              <!-- Center Numbers -->
+              <div data-hf-id="hf-atql" class="my-auto space-y-4">
+                <div data-hf-id="hf-1oe4" id="s4-layman" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/15 text-sm text-zinc-200 opacity-0">
+                  <span data-hf-id="hf-gwl0" class="text-kaiSky font-black">💡 NON-TECHNICAL TRANSLATION:</span>
+                  <span data-hf-id="hf-g56o">Writes <strong data-hf-id="hf-1v3l">1,500 Full Pages of Code</strong> in One Single Breath</span>
+                </div>
+
+                <div data-hf-id="hf-tkxg" id="s4-numbers" class="flex items-baseline gap-6 opacity-0">
+                  <div data-hf-id="hf-nu4g" class="relative">
+                    <span data-hf-id="hf-uwhi" id="s4-old-num" class="text-4xl font-black text-zinc-500 tabular-num line-through">64,000</span>
+                    <div data-hf-id="hf-dt06" id="s4-shatter-laser" class="absolute top-1/2 left-[-10%] w-0 h-1.5 bg-kaiRed -rotate-12 shadow-[0_0_20px_#EF4444]"></div>
+                  </div>
+                  <span data-hf-id="hf-eyw0" class="text-4xl text-kaiSky font-bold">➔</span>
+                  <div data-hf-id="hf-6dwa" class="flex items-baseline gap-2">
+                    <span data-hf-id="hf-5tzp" id="s4-odometer" class="text-8xl font-black bg-gradient-to-r from-cyan-300 via-sky-400 to-emerald-300 bg-clip-text text-transparent tabular-num glow-cyan">
+                      1,000,000
+                    </span>
+                    <span data-hf-id="hf-ag16" class="text-2xl font-black text-kaiSky">TOKENS</span>
+                  </div>
+                </div>
+
+                <!-- Vector Gauge -->
+                <div data-hf-id="hf-g3ve" id="s4-gauge-box" class="w-full h-8 bg-zinc-900 rounded-full overflow-hidden p-1 border border-white/20 relative opacity-0">
+                  <div data-hf-id="hf-yt0e" id="s4-gauge-fill" class="h-full bg-gradient-to-r from-sky-500 via-cyan-400 to-emerald-400 rounded-full w-0 glow-cyan"></div>
+                  <div data-hf-id="hf-jcy5" class="absolute top-0 bottom-0 left-[6.4%] w-0.5 bg-kaiRed"></div>
+                </div>
+                <div data-hf-id="hf-paeu" id="s4-labels" class="flex justify-between text-[11px] text-zinc-500 font-bold opacity-0">
+                  <span data-hf-id="hf-lf8x" class="text-kaiRed">▲ 64K INDUSTRY CEILING</span>
+                  <span data-hf-id="hf-9oo2" class="text-kaiSky">▲ 1M FULL CONTEXT HORIZON</span>
+                </div>
+              </div>
+
+              <div data-hf-id="hf-6tqr" id="s4-footer" class="border-t border-white/10 pt-3 flex justify-between text-xs text-zinc-500 opacity-0">
+                <span data-hf-id="hf-6bdn">IMPACT: ZERO CONTEXT TRUNCATION</span>
+                <span data-hf-id="hf-pnn4" class="text-kaiEmerald font-bold">DEEPSWE CODING APEX ➔</span>
+              </div>
+            </div>
+
+            <!-- Right: 16x Leap Monolith Column -->
+            <div data-hf-id="hf-njnk" id="s4-multiplier-col" class="w-[620px] h-[480px] rounded-3xl border-2 border-kaiSky/50 bg-gradient-to-b from-zinc-950 to-black p-8 flex flex-col justify-between items-center text-center shadow-[0_0_80px_rgba(56,189,248,0.25)] opacity-0 transform-gpu">
+              <span data-hf-id="hf-iv78" class="text-xs text-kaiSky font-black uppercase tracking-widest">OUTPUT MULTIPLIER RATIO</span>
+              <div data-hf-id="hf-xjkb" class="my-auto space-y-2">
+                <div data-hf-id="hf-kcjj" class="text-8xl font-black text-white glow-cyan">16×</div>
+                <span data-hf-id="hf-nubb" class="text-sm font-bold text-kaiEmerald uppercase tracking-wider block">EXPANSION OVER INDUSTRY STANDARD</span>
+                <p data-hf-id="hf-91np" class="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed">
+                  Competitors cap generations at 64k or 128k. Argon generates up to one million output tokens in a single prompt response.
+                </p>
+              </div>
+              <span data-hf-id="hf-4pg2" class="text-xs text-zinc-500">BENCHMARK TRANSITION INCOMING</span>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 5: DEEPSWE v1.1 2D VECTOR TRAJECTORY GRAPH (15.0s – 19.5s)
+               METAPHOR: Authentic Coordinate Plot with Overtaking SVG Curves
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-qwn7" id="shot-5" class="absolute inset-0 w-full h-full flex flex-col justify-between py-2 font-mono opacity-0 transform-gpu pointer-events-none" style="display: none;">
+            
+            <div data-hf-id="hf-zkrn" id="s5-header" class="flex justify-between items-center border-b border-white/10 pb-3 opacity-0">
+              <div data-hf-id="hf-y7yw">
+                <span data-hf-id="hf-4q9q" class="text-xs text-zinc-400 uppercase tracking-widest font-bold">SOFTWARE ENGINEERING OLYMPIAD // DEEPSWE v1.1</span>
+                <h3 data-hf-id="hf-qj7g" class="text-2xl font-black text-white mt-0.5">WORLD RECORD BENCHMARK TRAJECTORY</h3>
+              </div>
+              <span data-hf-id="hf-5wcv" class="px-4 py-1.5 rounded-full bg-kaiEmerald/15 border border-kaiEmerald/40 text-kaiEmerald text-xs font-black uppercase">
+                DETHRONING OPUS 5.5 &amp; ASTRA
+              </span>
+            </div>
+
+            <!-- Coordinate Canvas -->
+            <div data-hf-id="hf-yuuo" class="w-full h-72 relative flex items-center justify-center my-auto">
+              <svg data-hf-id="hf-1j9j" class="w-full h-full overflow-visible" viewBox="0 0 1000 240">
+                <!-- Axes -->
+                <line data-hf-id="hf-k3z4" id="s5-axis-y" x1="100" y1="20" x2="100" y2="220" stroke="#27272A" stroke-width="2" class="opacity-0" />
+                <line data-hf-id="hf-9nrg" id="s5-axis-x" x1="100" y1="220" x2="950" y2="220" stroke="#27272A" stroke-width="2" class="opacity-0" />
+                
+                <text data-hf-id="hf-1zza" id="s5-lbl-100" x="50" y="30" fill="#71717A" font-size="12" font-family="JetBrains Mono" class="opacity-0">100%</text>
+                <text data-hf-id="hf-01e4" id="s5-lbl-75" x="50" y="100" fill="#71717A" font-size="12" font-family="JetBrains Mono" class="opacity-0">75%</text>
+
+                <!-- Curve A: GPT-6 Astra (74.1%) -->
+                <path data-hf-id="hf-w59i" id="s5-curve-astra" d="M 100 200 Q 400 180 700 110 L 850 110" fill="none" stroke="#52525B" stroke-width="3" stroke-dasharray="6 4" class="opacity-0" />
+                <text data-hf-id="hf-tv0d" id="s5-txt-astra" x="860" y="114" fill="#A1A1AA" font-size="13" font-weight="bold" font-family="JetBrains Mono" class="opacity-0">ASTRA: 74.1%</text>
+
+                <!-- Curve B: Claude Opus 5.5 (74.2%) -->
+                <path data-hf-id="hf-steq" id="s5-curve-opus" d="M 100 195 Q 400 170 700 105 L 850 105" fill="none" stroke="#FACC15" stroke-width="3" stroke-dasharray="6 4" class="opacity-0" />
+                <text data-hf-id="hf-dt23" id="s5-txt-opus" x="860" y="95" fill="#FACC15" font-size="13" font-weight="bold" font-family="JetBrains Mono" class="opacity-0">OPUS 5.5: 74.2%</text>
+
+                <!-- Curve C: Gemini 4 Argon WINNER Curve (77.9%) -->
+                <path data-hf-id="hf-4nbv" id="s5-curve-argon" d="M 100 190 Q 400 140 700 60 L 850 60" fill="none" stroke="#38BDF8" stroke-width="6" stroke-linecap="round" class="glow-cyan" stroke-dasharray="1000" stroke-dashoffset="1000" />
+                
+                <!-- Argon Winning Callout Apex -->
+                <g data-hf-id="hf-n1jq" id="s5-apex-callout" class="opacity-0">
+                  <circle data-hf-id="hf-1cvb" cx="850" cy="60" r="9" fill="#10B981" class="glow-emerald" />
+                  <rect data-hf-id="hf-py15" x="865" y="38" width="125" height="44" rx="8" fill="#020305" stroke="#10B981" stroke-width="2" />
+                  <text data-hf-id="hf-llzc" x="876" y="59" fill="#10B981" font-size="16" font-weight="900" font-family="JetBrains Mono">77.9% #1</text>
+                  <text data-hf-id="hf-1w39" x="876" y="73" fill="#38BDF8" font-size="9" font-weight="bold" font-family="JetBrains Mono">ARGON APEX</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Grand Benchmark Stamp -->
+            <div data-hf-id="hf-pnk2" id="s5-stamp" class="absolute bottom-6 right-12 px-8 py-3 stamp-emerald rounded-2xl text-3xl font-black opacity-0 transform-gpu pointer-events-none">
+              WORLD RECORD CODING LEADER
+            </div>
+
+            <div data-hf-id="hf-5jig" id="s5-footer" class="border-t border-white/10 pt-3 flex justify-between text-xs text-zinc-500 opacity-0">
+              <span data-hf-id="hf-qvwu">EVALUATION: AUTONOMOUS SOFTWARE REPAIR OLYMPIAD</span>
+              <span data-hf-id="hf-m9mi" class="text-kaiRed font-bold">THE FAIRWIND DEFENSE EMBARGO ➔</span>
+            </div>
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 6: THE FAIRWIND MECHANICAL CYBER IRIS (19.5s – 23.5s)
+               METAPHOR: Counter-Rotating Iris + Slashing Blast Doors + Red Padlock
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-za04" id="shot-6" class="absolute inset-0 w-full h-full flex flex-col justify-between py-4 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <div data-hf-id="hf-2b3e" id="s6-header" class="flex justify-between items-center border-b border-white/10 pb-3 opacity-0">
+              <span data-hf-id="hf-nc75" class="text-kaiRed font-black uppercase tracking-widest flex items-center gap-2">
+                <svg data-hf-id="hf-w8y0" class="w-5 h-5 text-kaiRed animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect data-hf-id="hf-9jn9" x="3" y="11" width="18" height="11" rx="2" ry="2" /><path data-hf-id="hf-4qh8" d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+                CLASSIFIED DEPLOYMENT PROTOCOL // RESTRICTED ACCESS
+              </span>
+              <span data-hf-id="hf-7udx" class="px-3 py-1 rounded bg-kaiRed/15 text-kaiRed font-black text-xs uppercase">PUBLIC API: LOCKED</span>
+            </div>
+
+            <!-- Mechanical Cyber Iris Core (SVG) -->
+            <div data-hf-id="hf-so3h" class="w-full h-64 relative flex items-center justify-center my-auto">
+              <svg data-hf-id="hf-1rn2" class="w-72 h-72 overflow-visible" viewBox="0 0 200 200">
+                <circle data-hf-id="hf-8dwh" id="s6-iris-outer" cx="100" cy="100" r="90" stroke="#27272A" stroke-width="8" stroke-dasharray="16 10" fill="none" class="opacity-0" />
+                <circle data-hf-id="hf-nbms" id="s6-iris-inner" cx="100" cy="100" r="70" stroke="#EF4444" stroke-width="6" stroke-dasharray="30 15" fill="none" class="glow-red opacity-0" />
+                <g data-hf-id="hf-397o" id="s6-padlock-icon" transform="translate(75, 75)" class="opacity-0">
+                  <rect data-hf-id="hf-kxc1" x="10" y="22" width="30" height="24" rx="4" fill="#EF4444" />
+                  <path data-hf-id="hf-1h5o" d="M 16 22 L 16 12 A 9 9 0 0 1 34 12 L 34 22" fill="none" stroke="#EF4444" stroke-width="4" stroke-linecap="round" />
+                </g>
+              </svg>
+
+              <!-- Mechanical Blast Doors Closing -->
+              <div data-hf-id="hf-e6kl" id="s6-door-left" class="absolute left-10 w-96 h-48 border-r-4 border-kaiRed bg-gradient-to-r from-transparent to-kaiRed/15 transform-gpu opacity-0"></div>
+              <div data-hf-id="hf-3vjr" id="s6-door-right" class="absolute right-10 w-96 h-48 border-l-4 border-kaiRed bg-gradient-to-l from-transparent to-kaiRed/15 transform-gpu opacity-0"></div>
+            </div>
+
+            <!-- Explanation & Stamp -->
+            <div data-hf-id="hf-32lj" class="text-center space-y-1">
+              <h2 data-hf-id="hf-u82j" id="s6-txt-title" class="text-4xl font-black text-white opacity-0">LOCKED INSIDE THE FAIRWIND PROGRAM</h2>
+              <p data-hf-id="hf-381i" id="s6-txt-desc" class="text-xs text-zinc-400 opacity-0">Exclusive access granted only to government defense apparatus and cybersecurity defenders (Wiz).</p>
+            </div>
+
+            <!-- Padlock Verdict Stamp -->
+            <div data-hf-id="hf-moyx" id="s6-stamp" class="absolute inset-0 m-auto w-[820px] h-24 stamp-red rounded-3xl text-4xl font-black opacity-0 transform-gpu pointer-events-none">
+              FAIRWIND CLASSIFIED ACCESS
+            </div>
+
+            <div data-hf-id="hf-hjc1" id="s6-footer" class="border-t border-white/10 pt-3 flex justify-between text-xs text-zinc-500 opacity-0">
+              <span data-hf-id="hf-iubo">COMMERCIAL ROLLOUT: EMBARGOED</span>
+              <span data-hf-id="hf-j0p5" class="text-kaiSky font-bold">PRICE SQUEEZE &amp; CLIMAX ➔</span>
+            </div>
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SHOT 7: $2 PREDATORY PRICE SHOCK & CLIMAX STAMP (23.5s – 27.0s)
+               METAPHOR: Predatory Pricing Slicer + Final Argon Protocol Slam
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div data-hf-id="hf-o91j" id="shot-7" class="absolute inset-0 w-full h-full flex flex-col justify-between py-4 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <div data-hf-id="hf-nt7y" id="s7-header" class="flex justify-between items-center border-b border-white/10 pb-3 text-xs opacity-0">
+              <span data-hf-id="hf-xv08" class="text-kaiSky font-bold uppercase tracking-widest flex items-center gap-2">
+                <span data-hf-id="hf-weh5" class="w-3 h-3 rounded-full bg-kaiSky animate-ping"></span>
+                THE NEW TRI-FRONTIER WAR (GOOGLE VS ANTHROPIC VS OPENAI)
+              </span>
+              <span data-hf-id="hf-vtyt" class="text-kaiEmerald font-bold uppercase">ZERO SWITCHING FRICTION</span>
+            </div>
+
+            <div data-hf-id="hf-t9j2" class="my-auto flex items-center justify-around px-8">
+              <!-- Left Price Squeeze -->
+              <div data-hf-id="hf-becd" id="s7-price-col" class="space-y-3 opacity-0">
+                <span data-hf-id="hf-yzsz" class="text-xs text-zinc-400 uppercase tracking-widest block font-bold">PREDATORY INTRODUCTORY TARIFF</span>
+                <div data-hf-id="hf-muis" class="flex items-baseline gap-4">
+                  <span data-hf-id="hf-57p5" class="text-4xl text-zinc-500 font-bold line-through">$4 / $20</span>
+                  <span data-hf-id="hf-8j4v" class="text-3xl text-kaiEmerald">➔</span>
+                  <span data-hf-id="hf-ymq3" class="text-7xl font-black bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent tabular-num glow-emerald">
+                    $2 / $10
+                  </span>
+                </div>
+                <div data-hf-id="hf-grpd" class="flex items-center gap-3">
+                  <span data-hf-id="hf-udto" class="px-3 py-1 rounded bg-kaiEmerald/20 border border-kaiEmerald/40 text-kaiEmerald text-xs font-black">50% DISCOUNT</span>
+                  <span data-hf-id="hf-bmtl" class="text-xs text-zinc-300">Matching OpenAI Sol while delivering Flagship logic</span>
+                </div>
+              </div>
+
+              <!-- Right Cache Slice -->
+              <div data-hf-id="hf-lbla" id="s7-cache-col" class="p-6 rounded-2xl border-2 border-kaiSky/40 bg-kaiSky/5 space-y-2 text-center opacity-0">
+                <span data-hf-id="hf-r1n7" class="text-xs text-kaiSky uppercase font-black tracking-wider block">PROMPT CACHE READ ACCESS</span>
+                <div data-hf-id="hf-fh3y" class="text-5xl font-black text-white glow-cyan">-95% SLICE</div>
+                <span data-hf-id="hf-7d2a" class="text-[11px] text-zinc-400 block">$0.10 / M TOKENS (VIRTUALLY FREE REASONING LOOPS)</span>
+              </div>
+            </div>
+
+            <!-- Grand Climax Stamp Slam -->
+            <div data-hf-id="hf-zo2d" id="s7-stamp" class="absolute inset-0 m-auto w-[820px] h-24 stamp-emerald rounded-3xl text-4xl font-black opacity-0 transform-gpu pointer-events-none">
+              ARGON PROTOCOL // ACTIVE
+            </div>
+
+            <div data-hf-id="hf-2e7i" id="s7-footer" class="border-t border-white/10 pt-3 flex justify-between text-xs text-zinc-500 opacity-0">
+              <span data-hf-id="hf-szu3">COMMENCING PART 1: THE ARCHITECTURAL PRIMITIVES</span>
+              <span data-hf-id="hf-x7e6" class="text-kaiSky font-bold">DEEP DIVE IN PROGRESS ➔</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CMSUBS v4.8 SUBTITLE ENGINE (Y: 720px - 1080px) -->
+    <div data-hf-id="hf-3drw" class="absolute bottom-8 left-0 right-0 flex justify-center z-[60] pointer-events-none">
+      <div data-hf-id="hf-uv9v" id="caption-container" class="max-w-[1280px] w-full px-12 py-5 rounded-3xl bg-[#020305]/95 backdrop-blur-3xl border border-kaiSky/30 shadow-[0_30px_80px_rgba(0,0,0,0.95)] opacity-0 transform-gpu">
+        <p data-hf-id="hf-atlx" id="caption-text" class="text-[28px] font-black text-center text-white leading-snug tracking-wide drop-shadow-md text-balance"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    gsap.registerPlugin(TextPlugin);
+    const TOTAL_DUR = 27.0; // Mathematically Budgeted for Exact 27.0s
+
+    // Timeline Exposure on window.__timelines["intro"] for HyperFrames
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    function triggerChapterStinger(badge, title, enterAt, sceneEnd, isRed = false) {
+      tl.set("#stinger-badge", { 
+        innerHTML: badge,
+        className: isRed 
+          ? "px-5 py-0.5 rounded-full bg-kaiRed/10 border border-kaiRed/40 text-kaiRed font-mono text-[11px] font-bold tracking-[0.25em] uppercase mb-1"
+          : "px-5 py-0.5 rounded-full bg-kaiSky/10 border border-kaiSky/40 text-kaiSky font-mono text-[11px] font-bold tracking-[0.25em] uppercase mb-1"
+      }, enterAt);
+      tl.set("#stinger-title", { innerHTML: title }, enterAt);
+      tl.fromTo("#master-stinger",
+        { y: -30, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" },
+        enterAt
+      );
+      tl.to("#master-stinger", { y: -20, opacity: 0, duration: 0.35, ease: "power2.in" }, sceneEnd - 0.4);
+    }
+
+    function popBrandingBug(atTime, duration) {
+      tl.fromTo("#branding-bug",
+        { opacity: 0, scale: 0.8, y: -10 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.5)" },
+        atTime
+      );
+      tl.to("#branding-bug", { opacity: 0, duration: 0.35 }, atTime + duration - 0.35);
+    }
+
+    // =========================================================================
+    // 🎬 7-MICROSHOT SEQUENCING ENGINE (EXACT 27.0s TOTAL)
+    // ZERO ALL-AT-ONCE DUMPS: EVERY SUB-ELEMENT STAGGERS INDIVIDUALLY
+    // =========================================================================
+
+    // Initial Stinger & Bug
+    popBrandingBug(0.2, 14.5);
+    triggerChapterStinger("GOOGLE DEEPMIND // FRONTIER EVENT", "THE 1-MILLION OUTPUT MONSTER", 0.3, 14.5, false);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 1: THE 214-DAY FLATLINE (0.0s – 3.8s)
+    // ─────────────────────────────────────────────────────────────────────────
+    tl.set("#shot-1", { opacity: 1 }, 0.0);
+
+    // Elements reveal ONE-BY-ONE
+    tl.fromTo("#s1-tag", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.45 }, 0.5);
+    tl.fromTo("#s1-title", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 1.2);
+    tl.fromTo("#s1-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45 }, 2.0);
+
+    // 2.8s: Eruption wave fires across screen
+    tl.to("#s1-flatline-wave", { strokeDashoffset: 0, duration: 1.0, ease: "power3.out" }, 2.8);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 2: DEEPMIND SPARK & HERO TITLE SLAM (3.8s – 7.2s)
+    // ─────────────────────────────────────────────────────────────────────────
+    tl.to("#shot-1", { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 3.5);
+    tl.set("#shot-1", { display: "none" }, 3.8);
+
+    tl.set("#shot-2", { display: "flex", opacity: 1 }, 3.8);
+
+    // Spark expands
+    tl.fromTo("#s2-spark", { opacity: 0, scale: 0.3, rotation: -45 }, { opacity: 1, scale: 1.0, rotation: 0, duration: 0.5, ease: "back.out(2)" }, 3.9);
+    tl.fromTo("#s2-dispatch", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.35 }, 4.3);
+
+    // 4.8s: Monumental Title Slams (Spoken: "Gemini 4 Argon")
+    tl.fromTo("#s2-hero-title", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1.0, duration: 0.55, ease: "back.out(2.2)" }, 4.8);
+    tl.fromTo("#s2-pill", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 5.6);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 3: 3D HARDWARE CORE SPOTLIGHT & DOCK (7.2s – 11.2s)
+    // ─────────────────────────────────────────────────────────────────────────
+    tl.to("#shot-2", { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 6.9);
+    tl.set("#shot-2", { display: "none" }, 7.2);
+
+    tl.set("#shot-3", { display: "flex", opacity: 1 }, 7.2);
+
+    // PHASE 1: Hardware Core commands DEAD CENTER in isolation
+    tl.set("#s3-hardware", { x: 0, scale: 1.15, opacity: 0, y: 30 }, 7.2);
+    tl.to("#s3-hardware", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 7.3);
+
+    // Stagger hardware badges
+    tl.fromTo("#s3-hw-tag", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.35 }, 7.8);
+    tl.fromTo("#s3-hw-title", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35 }, 8.2);
+    tl.fromTo("#s3-hw-badge", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.0, duration: 0.35, ease: "back.out(2)" }, 8.6);
+
+    // PHASE 2: Center-Stage Handshake — Hardware docks to Stage Left
+    tl.to("#s3-hardware", { x: -440, scale: 1.0, rotateY: 8, duration: 0.8, ease: "power3.inOut" }, 9.2);
+
+    // PHASE 3: Sibling Entrance — Right Description Blade docks
+    tl.fromTo("#s3-dock-blade", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 9.6);
+    tl.fromTo("#s3-point-1", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, 9.9);
+    tl.fromTo("#s3-point-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, 10.3);
+    tl.fromTo("#s3-point-3", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, 10.7);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 4: 1M HYDRAULIC EXPANSION & SHATTER (11.2s – 15.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    tl.to("#shot-3", { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 10.9);
+    tl.set("#shot-3", { display: "none" }, 11.2);
+
+    tl.set("#shot-4", { display: "flex", opacity: 1 }, 11.2);
+
+    tl.fromTo("#s4-header", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.35 }, 11.3);
+    tl.fromTo("#s4-layman", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 11.6);
+    tl.fromTo("#s4-numbers", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 12.0);
+
+    // 12.4s: Laser strike shatters 64,000 on spoken "annihilating the 64,000 ceiling"
+    tl.to("#s4-shatter-laser", { width: "120%", duration: 0.22, ease: "power4.out" }, 12.4);
+    tl.to("#s4-old-num", { opacity: 0.35, duration: 0.15 }, 12.55);
+
+    // 12.8s: Token Odometer and Fuel Gauge Surge to 1,000,000 on spoken "one-million-token"
+    tl.to("#s4-odometer", {
+      innerText: 1000000,
+      snap: { innerText: 1000 },
+      duration: 2.0,
+      ease: "power2.out"
+    }, 12.8);
+
+    tl.to("#s4-gauge-box", { opacity: 1, duration: 0.3 }, 13.0);
+    tl.to("#s4-gauge-fill", { width: "100%", duration: 2.0, ease: "power2.out" }, 13.0);
+    tl.to("#s4-labels", { opacity: 1, duration: 0.35 }, 13.4);
+
+    // Right Multiplier Column slams in
+    tl.fromTo("#s4-multiplier-col", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1.0, duration: 0.5, ease: "back.out(2)" }, 13.2);
+    tl.to("#s4-footer", { opacity: 1, duration: 0.3 }, 14.2);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 5: DEEPSWE v1.1 2D VECTOR TRAJECTORY GRAPH (15.0s – 19.5s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(15.2, 11.5);
+    triggerChapterStinger("BENCHMARK ARENA // DEEPSWE v1.1", "SEIZING WORLD #1 FOR SOFTWARE ENGINEERING", 15.2, 26.5, false);
+
+    tl.to("#shot-4", { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 14.7);
+    tl.set("#shot-4", { display: "none" }, 15.0);
+
+    tl.set("#shot-5", { display: "flex", opacity: 1 }, 15.0);
+
+    // Stagger axes
+    tl.fromTo("#s5-header", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.35 }, 15.1);
+    tl.to("#s5-axis-y", { opacity: 1, duration: 0.25 }, 15.4);
+    tl.to("#s5-axis-x", { opacity: 1, duration: 0.25 }, 15.6);
+    tl.to("#s5-lbl-100", { opacity: 1, duration: 0.2 }, 15.8);
+    tl.to("#s5-lbl-75", { opacity: 1, duration: 0.2 }, 16.0);
+
+    // Competitor Curves animate sequentially
+    tl.to("#s5-curve-astra", { opacity: 1, duration: 0.35 }, 16.3);
+    tl.to("#s5-txt-astra", { opacity: 1, duration: 0.25 }, 16.5);
+
+    tl.to("#s5-curve-opus", { opacity: 1, duration: 0.35 }, 16.9);
+    tl.to("#s5-txt-opus", { opacity: 1, duration: 0.25 }, 17.1);
+
+    // 17.6s (Spoken: "on DeepSWE at seventy-seven point nine percent") -> Argon Curve Soars!
+    tl.to("#s5-curve-argon", { strokeDashoffset: 0, duration: 1.8, ease: "power3.out" }, 17.6);
+    tl.fromTo("#s5-apex-callout", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1.0, duration: 0.45, ease: "back.out(2.2)" }, 18.8);
+
+    // Stamp slams at 19.0s
+    tl.fromTo("#s5-stamp",
+      { scale: 3.5, opacity: 0, rotation: -20 },
+      { scale: 1.0, opacity: 1, rotation: 4, duration: 0.4, ease: "back.out(2.5)" },
+      19.0
+    );
+
+    tl.to("#s5-footer", { opacity: 1, duration: 0.3 }, 19.3);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 6: THE FAIRWIND MECHANICAL CYBER IRIS (19.5s – 23.5s)
+    // ─────────────────────────────────────────────────────────────────────────
+    tl.to("#shot-5", { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 19.2);
+    tl.set("#shot-5", { display: "none" }, 19.5);
+
+    tl.set("#shot-6", { display: "flex", opacity: 1 }, 19.5);
+
+    tl.fromTo("#s6-header", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.35 }, 19.6);
+
+    // Iris rings start rotating
+    tl.to("#s6-iris-outer", { opacity: 1, rotation: 360, transformOrigin: "100px 100px", duration: 8.0, ease: "none" }, 19.8);
+    tl.to("#s6-iris-inner", { opacity: 1, rotation: -360, transformOrigin: "100px 100px", duration: 8.0, ease: "none" }, 20.0);
+
+    // Blast doors slam from both flanks at 20.6s
+    tl.fromTo("#s6-door-left", { opacity: 0, x: -350 }, { opacity: 1, x: 0, duration: 0.55, ease: "power4.out" }, 20.6);
+    tl.fromTo("#s6-door-right", { opacity: 0, x: 350 }, { opacity: 1, x: 0, duration: 0.55, ease: "power4.out" }, 20.6);
+
+    tl.to("#s6-padlock-icon", { opacity: 1, duration: 0.3 }, 21.2);
+    tl.fromTo("#s6-txt-title", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 21.5);
+    tl.fromTo("#s6-txt-desc", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 21.9);
+
+    // Red Padlock Stamp Slams on spoken "locked it exclusively behind their Fairwind program"
+    tl.fromTo("#s6-stamp",
+      { scale: 3.5, opacity: 0, rotation: -26 },
+      { scale: 1.0, opacity: 1, rotation: -6, duration: 0.42, ease: "back.out(2.8)" },
+      22.3
+    );
+
+    // Recoil
+    tl.to("#stage-bounds", { y: 6, duration: 0.08, yoyo: true, repeat: 3 }, 22.72);
+    tl.to("#s6-footer", { opacity: 1, duration: 0.3 }, 23.2);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SHOT 7: $2 PREDATORY PRICE SHOCK & CLIMAX (23.5s – 27.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    tl.to("#shot-6", { opacity: 0, scale: 0.94, duration: 0.3, ease: "power2.in" }, 23.2);
+    tl.set("#shot-6", { display: "none" }, 23.5);
+
+    tl.set("#shot-7", { display: "flex", opacity: 1 }, 23.5);
+
+    tl.fromTo("#s7-header", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.3 }, 23.6);
+    tl.fromTo("#s7-price-col", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.45 }, 23.9);
+    tl.fromTo("#s7-cache-col", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.45 }, 24.3);
+
+    // Emerald Climax Stamp slams
+    tl.fromTo("#s7-stamp",
+      { scale: 3.6, opacity: 0, rotation: 25 },
+      { scale: 1.0, opacity: 1, rotation: 5, duration: 0.42, ease: "back.out(2.5)" },
+      25.2
+    );
+
+    // Screen shudder
+    tl.to("#shot-7", { y: 6, duration: 0.08, yoyo: true, repeat: 3 }, 25.62);
+    tl.to("#s7-footer", { opacity: 1, duration: 0.3 }, 26.2);
+
+
+    // =========================================================================
+    // CMSUBS v4.8 SUBTITLES (0.0s – 27.0s)
+    // =========================================================================
+    const SUBTITLES = [
+      // Audio 1 (0.0s - 15.0s)
+      { 
+        t: 0.4, 
+        d: 6.8, 
+        text: "After seven months of silence in the frontier class, Google DeepMind just dropped <mark class='sky'>Gemini 4 Argon</mark>—" 
+      },
+      { 
+        t: 7.4, 
+        d: 7.2, 
+        text: "—annihilating the 64K ceiling with a monstrous <mark class='emerald'>one-million-token single-response limit</mark>." 
+      },
+
+      // Audio 2 (15.0s - 27.0s)
+      { 
+        t: 15.2, 
+        d: 5.6, 
+        text: "It seized world number one in software engineering on DeepSWE at <mark class='emerald'>77.9%</mark>—" 
+      },
+      { 
+        t: 21.0, 
+        d: 5.6, 
+        text: "—yet Google locked it exclusively behind their <mark class='red'>Fairwind cyber defense program</mark>." 
+      }
+    ];
+
+    SUBTITLES.forEach(c => {
+      tl.set("#caption-text", { innerHTML: c.text }, c.t);
+      tl.fromTo("#caption-container",
+        { opacity: 0, y: 16, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.5)" },
+        c.t
+      );
+      tl.to("#caption-container", { opacity: 0, y: 10, duration: 0.30, ease: "power2.in" }, c.t + c.d - 0.30);
+    });
+
+    // HyperFrames Preview Event Interceptors
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.addEventListener('pause', (e) => e.stopPropagation(), true);
+      audio.addEventListener('ended', (e) => e.stopPropagation(), true);
+    });
+
+    // Expose timeline under "intro" composition ID
+    window.__timelines["intro"] = tl;
+  </script>
+</body>
+</html>

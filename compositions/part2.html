@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KCMv1.1 GEMINI 4 ARGON: PART 2 CLEAN REENGINEERED</title>
+
+  <!-- TAILWIND & GSAP CORE ENGINE -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            voidBlack: '#020305',
+            kaiAmber: '#FACC15',
+            kaiSky: '#38BDF8',
+            kaiBlue: '#2563EB',
+            kaiRed: '#EF4444',
+            kaiEmerald: '#10B981',
+            kaiZinc: '#27272A'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #020305; color: #fff; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    .perspective-stage { perspective: 1600px; transform-style: preserve-3d; }
+    .preserve-3d { transform-style: preserve-3d; }
+    .tabular-num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+
+    /* Asymmetric Physical Frames for Images */
+    .white-polaroid {
+      border: 7px solid #FFFFFF;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 40px rgba(255, 255, 255, 0.25);
+    }
+    .cinema-strip {
+      border-top: 5px solid #FFFFFF;
+      border-bottom: 5px solid #FFFFFF;
+      box-shadow: 0 0 50px rgba(56, 189, 248, 0.35);
+    }
+    .diamond-wafer {
+      border: 4px solid #FACC15;
+      box-shadow: 0 0 60px rgba(250, 204, 21, 0.4);
+    }
+
+    /* Volumetric Glows */
+    .glow-cyan { filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.75)); }
+    .glow-emerald { filter: drop-shadow(0 0 35px rgba(16, 185, 129, 0.75)); }
+    .glow-red { filter: drop-shadow(0 0 35px rgba(239, 68, 68, 0.85)); }
+    .glow-amber { filter: drop-shadow(0 0 35px rgba(250, 204, 21, 0.75)); }
+
+    /* Clean Status Badges */
+    .status-badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 3.5px solid #10B981;
+      color: #10B981;
+      background: rgba(16, 185, 129, 0.18);
+      box-shadow: 0 0 50px rgba(16, 185, 129, 0.5);
+    }
+
+    .status-badge-red {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 3.5px solid #EF4444;
+      color: #EF4444;
+      background: rgba(239, 68, 68, 0.18);
+      box-shadow: 0 0 50px rgba(239, 68, 68, 0.5);
+    }
+
+    .status-badge-amber {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 3.5px solid #FACC15;
+      color: #FACC15;
+      background: rgba(250, 204, 21, 0.18);
+      box-shadow: 0 0 50px rgba(250, 204, 21, 0.5);
+    }
+
+    /* Subtitles (CMsubs v4.8) */
+    mark { background-color: rgba(56, 189, 248, 0.15); color: #38BDF8; padding: 2px 6px; border-radius: 4px; }
+    mark.amber { background-color: rgba(250, 204, 21, 0.15); color: #FACC15; }
+    mark.emerald { background-color: rgba(16, 185, 129, 0.15); color: #10B981; }
+    mark.red { background-color: rgba(239, 68, 68, 0.15); color: #EF4444; }
+  </style>
+</head>
+
+<body class="w-[1920px] h-[1080px] select-none">
+
+  <!-- COMPOSITION ROOT: Exactly 118.0s Locked Duration (18 + 16 + 17 + 15 + 17 + 17 + 18) -->
+  <div id="part2-root" data-composition-id="part2" data-start="0" data-duration="118.0" data-width="1920" data-height="1080" class="relative w-[1920px] h-[1080px] bg-voidBlack overflow-hidden">
+
+    <!-- DECLARATIVE AUDIO PAYLOAD (Reliably Preloaded) -->
+    <audio id="audio-s8" data-start="0.0" data-duration="18.0" src="../assets/audio/scene_8.mp3" preload="auto"></audio>
+    <audio id="audio-s9" data-start="18.0" data-duration="16.0" src="../assets/audio/scene_9.mp3" preload="auto"></audio>
+    <audio id="audio-s10" data-start="34.0" data-duration="17.0" src="../assets/audio/scene_10.mp3" preload="auto"></audio>
+    <audio id="audio-s11" data-start="51.0" data-duration="15.0" src="../assets/audio/scene_11.mp3" preload="auto"></audio>
+    <audio id="audio-s12" data-start="66.0" data-duration="17.0" src="../assets/audio/scene_12.mp3" preload="auto"></audio>
+    <audio id="audio-s13" data-start="83.0" data-duration="17.0" src="../assets/audio/scene_13.mp3" preload="auto"></audio>
+    <audio id="audio-s14" data-start="100.0" data-duration="18.0" src="../assets/audio/scene_14.mp3" preload="auto"></audio>
+
+    <!-- OFFICIAL @GCA BRANDING BUG -->
+    <div id="branding-bug" class="absolute top-6 right-10 px-5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md z-[100] flex items-center gap-3 opacity-0 pointer-events-none transform-gpu shadow-2xl">
+      <div class="w-2.5 h-2.5 bg-kaiSky rounded-full animate-ping"></div>
+      <span class="font-mono text-xs font-bold text-white tracking-widest">@GCA</span>
+    </div>
+
+    <!-- 3D CAMERA RIG & PERSPECTIVE STAGE -->
+    <div id="camera-rig" class="absolute inset-0 w-full h-full transform-gpu origin-center perspective-stage z-[20]">
+      <div id="world-canvas" class="absolute inset-0 w-full h-full preserve-3d transform-gpu">
+
+        <!-- ===================================================================
+             STAGE SWEET SPOT (Y: 135px – 695px, HEIGHT: 550px, WIDTH: 1640px)
+             PURE ARCHITECTURAL SPACE • ZERO FILLER CORNER JUNK
+             =================================================================== -->
+        <div id="stage-bounds" class="absolute top-[135px] left-0 right-0 w-[1640px] mx-auto h-[550px] relative preserve-3d flex items-center justify-center">
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 8: DEEPSWE v1.1 CODING SOVEREIGNTY PODIUM (0.0s – 18.0s)
+               METAPHOR: Clean 3D Podium + Overtaking Trajectory Lines
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-8" class="absolute inset-0 w-full h-full flex flex-col justify-between py-4 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <!-- Animated Header -->
+            <div id="s8-title-bar" class="flex justify-between items-center border-b border-white/10 pb-4 opacity-0 transform-gpu">
+              <span class="text-xs text-kaiSky font-black uppercase tracking-[0.25em]">// BENCHMARK ARENA: DEEPSWE v1.1</span>
+              <span class="text-3xl font-black text-white">WORLD RECORD CODING OLYMPIAD</span>
+              <span class="px-4 py-1 rounded-full bg-kaiEmerald/20 text-kaiEmerald text-xs font-black">#1 OVERALL</span>
+            </div>
+
+            <!-- Freestanding Arena Stage: 3D Trajectory Bars -->
+            <div class="my-auto flex items-center justify-between gap-16 px-10">
+              
+              <!-- Left: 3D Gold Crown Pedestal -->
+              <div id="s8-podium-pedestal" class="w-[460px] h-[320px] flex flex-col justify-between items-center text-center opacity-0 transform-gpu" style="transform: perspective(1000px) rotateY(10deg);">
+                <div class="w-24 h-24 relative flex items-center justify-center">
+                  <svg class="w-full h-full glow-amber" viewBox="0 0 100 100">
+                    <polygon points="50,15 65,45 95,45 70,65 80,95 50,75 20,95 30,65 5,45 35,45" fill="#FACC15" />
+                    <circle cx="50" cy="55" r="8" fill="#020305" />
+                  </svg>
+                </div>
+                <div class="space-y-1">
+                  <span class="text-sm text-zinc-400 uppercase tracking-widest block font-bold">FRONTIER CODING LEADER</span>
+                  <div class="text-8xl font-black text-white glow-cyan tabular-num" id="s8-winner-score">77.9%</div>
+                  <span class="text-sm text-kaiSky font-black uppercase tracking-wider block">GEMINI 4 ARGON</span>
+                </div>
+              </div>
+
+              <!-- Right: Competitor Trajectory Tracks -->
+              <div id="s8-trajectory-bars" class="flex-1 space-y-6 opacity-0">
+                <!-- Argon Track -->
+                <div class="space-y-2">
+                  <div class="flex justify-between text-base font-bold">
+                    <span class="text-kaiSky font-black flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-kaiSky animate-ping"></span>
+                      GEMINI 4 ARGON [WORLD RECORD]
+                    </span>
+                    <span class="text-2xl font-black text-white tabular-num">77.9%</span>
+                  </div>
+                  <div class="w-full h-8 bg-zinc-900 rounded-xl overflow-hidden p-0.5 border-2 border-kaiSky/70 shadow-[0_0_25px_rgba(56,189,248,0.4)]">
+                    <div id="s8-fill-argon" class="h-full bg-gradient-to-r from-cyan-400 via-sky-400 to-emerald-400 rounded-lg w-0"></div>
+                  </div>
+                </div>
+
+                <!-- Opus 5.5 Track -->
+                <div class="space-y-2">
+                  <div class="flex justify-between text-sm text-zinc-400 font-bold">
+                    <span>CLAUDE OPUS 5.5 (PREVIOUS BENCHMARK LEADER)</span>
+                    <span class="text-xl tabular-num text-zinc-300">74.2%</span>
+                  </div>
+                  <div class="w-full h-6 bg-zinc-900 rounded-lg overflow-hidden p-0.5 border border-white/10">
+                    <div class="h-full bg-zinc-600 rounded-md w-[74.2%]"></div>
+                  </div>
+                </div>
+
+                <!-- GPT-6 Astra Track -->
+                <div class="space-y-2">
+                  <div class="flex justify-between text-sm text-zinc-500 font-bold">
+                    <span>OPENAI GPT-6 ASTRA</span>
+                    <span class="text-xl tabular-num text-zinc-400">74.1%</span>
+                  </div>
+                  <div class="w-full h-6 bg-zinc-900 rounded-lg overflow-hidden p-0.5 border border-white/10">
+                    <div class="h-full bg-zinc-700 rounded-md w-[74.1%]"></div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Integrated Status Badge -->
+            <div id="s8-status-badge" class="flex justify-center opacity-0">
+              <span class="status-badge-emerald px-10 py-3.5 rounded-2xl text-lg font-black">
+                ✓ 77.9% WORLD RECORD SOFTWARE REPAIR VERIFIED
+              </span>
+            </div>
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 9: ARTIFICIAL ANALYSIS EMBLEM & DUAL DIALS (18.0s – 34.0s)
+               FIXED: No Text Collisions With Polaroid Frame • Clean Margins
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-9" class="absolute inset-0 w-full h-full flex items-center justify-between gap-16 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <!-- Left: Isolated Polaroid (No text collisions) -->
+            <div id="s9-emblem-polaroid" class="w-[460px] h-[480px] rounded-3xl white-polaroid bg-zinc-950 p-6 flex flex-col justify-between opacity-0 transform-gpu" style="transform: perspective(1000px) rotateY(12deg);">
+              <div class="relative w-full h-72 rounded-2xl overflow-hidden border border-white/20">
+                <img src="../assets/images/artificial_analysis_emblem.jpg" class="w-full h-full object-cover" alt="AA Emblem" />
+              </div>
+              <div class="text-center pt-2">
+                <h4 class="text-white font-black text-xl">ARTIFICIAL ANALYSIS</h4>
+                <span class="text-xs text-kaiSky uppercase tracking-widest block font-bold mt-0.5">INDEPENDENT LAB AUDIT</span>
+              </div>
+            </div>
+
+            <!-- Right: High-Contrast SVG Dials & Delta Spring -->
+            <div class="flex-1 h-[480px] flex flex-col justify-between py-2 items-center text-center">
+              <div id="s9-dial-title" class="opacity-0">
+                <h3 class="text-4xl font-black text-white">THE INTELLIGENCE INDEX PROFILE</h3>
+              </div>
+
+              <!-- Dual Radial Vector Dials (SVG) -->
+              <div id="s9-dials-rig" class="w-full flex items-center justify-around my-auto opacity-0">
+                
+                <!-- Dial A: Argon (53) -->
+                <div class="flex flex-col items-center">
+                  <div class="relative w-48 h-48 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="50" stroke="#27272A" stroke-width="12" fill="none" />
+                      <circle id="s9-dial-argon-arc" cx="60" cy="60" r="50" stroke="#38BDF8" stroke-width="12" stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round" fill="none" class="glow-cyan" />
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                      <span class="text-5xl font-black text-white tabular-num">53</span>
+                      <span class="text-xs text-kaiSky font-bold uppercase mt-1">ARGON</span>
+                    </div>
+                  </div>
+                  <span class="text-sm text-zinc-300 mt-3 font-bold">MATCHES ASTRA (53)</span>
+                </div>
+
+                <!-- Center Delta Spring -->
+                <div id="s9-delta-box" class="px-6 py-4 rounded-2xl border-2 border-kaiAmber/50 bg-kaiAmber/10 text-center space-y-1 opacity-0">
+                  <span class="text-xs text-kaiAmber font-black uppercase tracking-wider block">SPREAD</span>
+                  <div class="text-4xl font-black text-white">5 PTS</div>
+                  <span class="text-xs text-zinc-300 block font-bold">DIFFERENTIAL</span>
+                </div>
+
+                <!-- Dial B: Opus 5.5 (58) -->
+                <div class="flex flex-col items-center">
+                  <div class="relative w-48 h-48 flex items-center justify-center">
+                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="50" stroke="#27272A" stroke-width="12" fill="none" />
+                      <circle id="s9-dial-opus-arc" cx="60" cy="60" r="50" stroke="#FACC15" stroke-width="12" stroke-dasharray="314" stroke-dashoffset="314" stroke-linecap="round" fill="none" class="glow-amber" />
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                      <span class="text-5xl font-black text-white tabular-num">58</span>
+                      <span class="text-xs text-kaiAmber font-bold uppercase mt-1">OPUS 5.5</span>
+                    </div>
+                  </div>
+                  <span class="text-sm text-zinc-300 mt-3 font-bold">LEADER SCORE</span>
+                </div>
+
+              </div>
+
+              <!-- Status Stamp -->
+              <div id="s9-stamp" class="status-badge-amber px-10 py-3 rounded-2xl text-lg font-black opacity-0">
+                PARITY WITH ASTRA // TRAILS OPUS 5.5 BY 5 PTS
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 10: THE HARVEY LEGAL AGENT BLOWOUT (3.6X) (34.0s – 51.0s)
+               METAPHOR: Stepped 3D Monumental Spire + Laser Caliper (No Footer Junk)
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-10" class="absolute inset-0 w-full h-full flex flex-col justify-between py-4 font-mono opacity-0 transform-gpu pointer-events-none" style="display: none;">
+            
+            <div id="s10-header" class="flex justify-between items-center border-b border-white/10 pb-3 opacity-0">
+              <span class="text-xs text-kaiEmerald font-black uppercase tracking-[0.25em]">// DOMAIN EVALUATION: HARVEY LEGAL BENCHMARK</span>
+              <span class="text-3xl font-black text-white">PROFESSIONAL KNOWLEDGE WORK BLOWOUT</span>
+              <span class="px-4 py-1 rounded-full bg-kaiEmerald/20 text-kaiEmerald text-xs font-black">3.6X MULTIPLIER</span>
+            </div>
+
+            <!-- Freestanding Spire Comparison -->
+            <div class="my-auto flex items-end justify-around px-16 h-72 relative">
+              
+              <!-- Astra Spire (5.4%) -->
+              <div id="s10-astra-spire" class="w-64 flex flex-col items-center opacity-0">
+                <span class="text-base text-zinc-400 uppercase font-bold mb-2">GPT-6 ASTRA</span>
+                <div class="w-full h-20 bg-zinc-900 border-2 border-kaiRed/50 rounded-2xl flex items-center justify-center">
+                  <span class="text-4xl font-black text-kaiRed tabular-num">5.4%</span>
+                </div>
+              </div>
+
+              <!-- Laser Caliper Bridge -->
+              <div id="s10-caliper-box" class="px-8 py-5 rounded-3xl border-2 border-kaiEmerald/60 bg-gradient-to-b from-kaiEmerald/20 to-black text-center space-y-1 opacity-0 shadow-[0_0_60px_rgba(16,185,129,0.35)]">
+                <span class="text-xs text-kaiEmerald font-black uppercase tracking-widest block">PERFORMANCE ADVANTAGE</span>
+                <div class="text-7xl font-black text-white glow-emerald">3.6×</div>
+                <span class="text-sm text-zinc-200 font-bold block">NEARLY 4X HIGHER ACCURACY</span>
+              </div>
+
+              <!-- Argon Spire (19.6%) -->
+              <div id="s10-argon-spire" class="w-64 flex flex-col items-center opacity-0">
+                <span class="text-base text-kaiEmerald uppercase font-bold mb-2">GEMINI 4 ARGON</span>
+                <div class="w-full h-64 bg-zinc-900 border-2 border-kaiEmerald rounded-2xl flex items-center justify-center glow-emerald">
+                  <span class="text-6xl font-black text-white tabular-num">19.6%</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Status Banner -->
+            <div id="s10-status-bar" class="flex justify-center opacity-0">
+              <span class="status-badge-emerald px-10 py-3.5 rounded-2xl text-lg font-black">
+                ✓ HIGHEST SCORE RECORDED IN HARVEY LEGAL BENCHMARK HISTORY
+              </span>
+            </div>
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 11: DEFENSIVE CYBERSECURITY & VOLUMETRIC SHIELD (51.0s – 66.0s)
+               FIXED: ZERO CORNER JUNK • ZERO OVERLAPPING CIRCLE STAMP
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-11" class="absolute inset-0 w-full h-full flex items-center justify-between gap-12 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <!-- Left: Cinema-Strip Fairwind Cyber Command Image -->
+            <div id="s11-cyber-strip" class="w-[560px] h-[500px] rounded-3xl cinema-strip bg-zinc-950 p-4 flex flex-col justify-between opacity-0 transform-gpu" style="transform: perspective(1200px) rotateY(10deg);">
+              <div class="relative w-full h-80 rounded-2xl overflow-hidden border border-white/20">
+                <img src="../assets/images/fairwind_cyber_shield.jpg" class="w-full h-full object-cover" alt="Cyber Shield" />
+              </div>
+              <div class="pt-4 border-t border-white/10 flex justify-between items-center text-sm">
+                <div>
+                  <span class="text-xs text-zinc-400 uppercase block font-bold">DEFENSIVE CYBER OPERATIONS</span>
+                  <span class="text-white font-black text-base">GRAY SWAN INJECTION HARNESS</span>
+                </div>
+                <span class="px-3.5 py-1.5 rounded-full bg-kaiSky/20 text-kaiSky text-xs font-black">FORTIFIED</span>
+              </div>
+            </div>
+
+            <!-- Right: Volumetric Cyber Shield & 90px Typography (Zero Corner Text!) -->
+            <div class="flex-1 h-[500px] flex flex-col justify-between py-6 px-6 font-mono">
+              <div id="s11-header" class="border-b border-white/10 pb-3 flex justify-between items-center text-sm opacity-0">
+                <span class="text-white font-bold uppercase tracking-wider flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-kaiEmerald animate-ping"></span>
+                  INDIRECT PROMPT INJECTION RESISTANCE
+                </span>
+                <span class="text-kaiEmerald font-black">#1 OF 13 FRONTIER MODELS</span>
+              </div>
+
+              <!-- Volumetric Energy Shield with Active Ricocheting Red Laser Beams -->
+              <div id="s11-shield-svg" class="w-full h-44 relative flex items-center justify-center opacity-0 my-auto">
+                <svg class="w-56 h-56 overflow-visible" viewBox="0 0 100 100">
+                  <polygon points="50,5 90,27 90,73 50,95 10,73 10,27" fill="#0D0E12" stroke="#38BDF8" stroke-width="3.5" class="glow-cyan" />
+                  <path d="M 50 25 L 75 38 L 75 62 L 50 78 L 25 62 L 25 38 Z" fill="#10B981" opacity="0.3" class="glow-emerald" />
+                  <line id="s11-red-beam1" x1="130" y1="20" x2="88" y2="35" stroke="#EF4444" stroke-width="4" stroke-dasharray="5 3" />
+                  <line id="s11-red-beam2" x1="130" y1="80" x2="88" y2="65" stroke="#EF4444" stroke-width="4" stroke-dasharray="5 3" />
+                </svg>
+              </div>
+
+              <!-- Monumental Telemetry Block (No Corner Annotations!) -->
+              <div id="s11-telemetry" class="p-8 rounded-3xl border-2 border-kaiEmerald/70 bg-gradient-to-r from-kaiEmerald/20 via-transparent to-transparent flex items-center justify-between opacity-0 shadow-[0_0_50px_rgba(16,185,129,0.35)]">
+                <div>
+                  <span class="text-sm text-kaiEmerald font-black uppercase tracking-wider block">ATTACK SUCCESS RATE</span>
+                  <div class="text-8xl font-black text-white tabular-num mt-1 glow-emerald">0.7%</div>
+                  <span class="text-sm text-zinc-200 block mt-2 font-bold">99.3% DEFENSIVE RESISTANCE AGAINST ADVERSARIAL ATTACKS</span>
+                </div>
+                <span class="status-badge-emerald px-6 py-3 rounded-2xl text-sm font-black">
+                  LOWEST VULNERABILITY
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 12: THE FAIRWIND MECHANICAL CYBER IRIS (66.0s – 83.0s)
+               METAPHOR: Counter-Rotating Iris Gears + Titanium Slam Doors + Padlock
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-12" class="absolute inset-0 w-full h-full flex flex-col justify-between py-4 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <div id="s12-header" class="flex justify-between items-center border-b border-white/10 pb-3 text-sm opacity-0">
+              <span class="text-kaiRed font-black uppercase tracking-widest flex items-center gap-2">
+                <svg class="w-5 h-5 text-kaiRed animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                CLASSIFIED EMBARGO // ACCESS PROTOCOL
+              </span>
+              <span class="px-4 py-1.5 rounded-full bg-kaiRed/20 text-kaiRed font-black text-xs uppercase">PUBLIC API: LOCKED</span>
+            </div>
+
+            <!-- Mechanical Cyber Iris Core (SVG) -->
+            <div class="w-full h-64 relative flex items-center justify-center my-auto">
+              <svg class="w-72 h-72 overflow-visible" viewBox="0 0 200 200">
+                <circle id="s12-iris-outer" cx="100" cy="100" r="90" stroke="#27272A" stroke-width="8" stroke-dasharray="16 10" fill="none" class="opacity-0" />
+                <circle id="s12-iris-inner" cx="100" cy="100" r="70" stroke="#EF4444" stroke-width="6" stroke-dasharray="30 15" fill="none" class="glow-red opacity-0" />
+                <g id="s12-padlock-icon" transform="translate(75, 75)" class="opacity-0">
+                  <rect x="10" y="22" width="30" height="24" rx="4" fill="#EF4444" />
+                  <path d="M 16 22 L 16 12 A 9 9 0 0 1 34 12 L 34 22" fill="none" stroke="#EF4444" stroke-width="4" stroke-linecap="round" />
+                </g>
+              </svg>
+
+              <!-- Mechanical Blast Doors Closing -->
+              <div id="s12-door-left" class="absolute left-10 w-96 h-48 border-r-4 border-kaiRed bg-gradient-to-r from-transparent to-kaiRed/15 transform-gpu opacity-0"></div>
+              <div id="s12-door-right" class="absolute right-10 w-96 h-48 border-l-4 border-kaiRed bg-gradient-to-l from-transparent to-kaiRed/15 transform-gpu opacity-0"></div>
+            </div>
+
+            <!-- Text & Stamp -->
+            <div class="text-center space-y-2">
+              <h2 id="s12-txt-title" class="text-5xl font-black text-white opacity-0">LOCKED INSIDE THE FAIRWIND PROGRAM</h2>
+              <p id="s12-txt-desc" class="text-base text-zinc-300 opacity-0">Exclusive deployment to government security apparatus and vetted cyber defenders (Wiz).</p>
+            </div>
+
+            <!-- Integrated Status Stamp -->
+            <div id="s12-stamp-box" class="flex justify-center opacity-0 mt-2">
+              <span class="status-badge-red px-10 py-3.5 rounded-2xl text-xl font-black">
+                FAIRWIND CLASSIFIED ACCESS EMBARGO
+              </span>
+            </div>
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 13: 3D THERMAL CONTRACT & PRICE DOUBLING (83.0s – 100.0s)
+               METAPHOR: Tilted Thermal Receipt with Laser Shear (No Footer Junk)
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-13" class="absolute inset-0 w-full h-full flex items-center justify-center opacity-0 pointer-events-none preserve-3d" style="display: none;">
+            
+            <div id="s13-receipt" class="w-[1050px] h-[510px] rounded-3xl border-2 border-kaiAmber/50 bg-gradient-to-b from-zinc-950 to-black p-10 flex flex-col justify-between font-mono shadow-[0_30px_100px_rgba(250,204,21,0.3)] transform-gpu relative overflow-hidden preserve-3d" style="transform: perspective(1200px) rotateX(12deg) rotateY(-4deg);">
+              
+              <div id="s13-header" class="flex justify-between items-center border-b border-white/10 pb-4 text-sm opacity-0">
+                <span class="text-kaiAmber font-black uppercase tracking-widest flex items-center gap-2">
+                  <svg class="w-4 h-4 text-kaiAmber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  FINANCIAL AUDIT // THE PROMOTIONAL CLIFF
+                </span>
+                <span class="text-zinc-400 font-bold">FINE PRINT INSPECTION</span>
+              </div>
+
+              <div class="my-auto space-y-6">
+                <!-- Promo vs Standard Rate Slabs -->
+                <div id="s13-slabs" class="grid grid-cols-2 gap-8 opacity-0">
+                  <div class="p-6 rounded-2xl border border-kaiEmerald/40 bg-kaiEmerald/10 space-y-2">
+                    <span class="text-sm text-kaiEmerald font-black uppercase">CURRENT INTRODUCTORY TARIFF</span>
+                    <div class="text-5xl font-black text-white tabular-num">$2 / $10</div>
+                    <span class="text-sm text-zinc-300 block">50% Discount during limited preview</span>
+                  </div>
+                  <div class="p-6 rounded-2xl border-2 border-kaiRed/60 bg-kaiRed/10 space-y-2 shadow-[0_0_30px_rgba(239,68,68,0.2)]">
+                    <span class="text-sm text-kaiRed font-black uppercase">GENERAL AVAILABILITY RATE</span>
+                    <div class="text-5xl font-black text-kaiRed tabular-num">$4 / $20</div>
+                    <span class="text-sm text-zinc-300 block">Matches Claude Opus 5.5 dollar for dollar</span>
+                  </div>
+                </div>
+
+                <div id="s13-callout" class="p-4 rounded-xl bg-white/5 border border-white/10 text-sm text-zinc-200 opacity-0 text-center font-bold">
+                  ⚠ WARNING: That 50% discount will disappear once general public API availability launches.
+                </div>
+              </div>
+
+              <!-- Status Stamp -->
+              <div id="s13-status-box" class="flex justify-center opacity-0">
+                <span class="status-badge-amber px-10 py-3 rounded-2xl text-lg font-black">
+                  PRICING WILL DOUBLE UPON GENERAL AVAILABILITY
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ═══════════════════════════════════════════════════════════════════
+               SCENE 14: THE 3-WAY TRI-NEXUS & FINAL GAVEL (100.0s – 118.0s)
+               FIXED: Image Fallback Guaranteed (Never Shows Broken Image Box!)
+               ═══════════════════════════════════════════════════════════════════ -->
+          <div id="scene-14" class="absolute inset-0 w-full h-full flex items-center justify-between gap-12 font-mono opacity-0 transform-gpu preserve-3d pointer-events-none" style="display: none;">
+            
+            <!-- Left: Tri-Nexus Convergence Image with Robust Fallback -->
+            <div id="s14-diamond-img" class="w-[520px] h-[500px] rounded-3xl diamond-wafer bg-zinc-950 p-4 flex flex-col justify-between opacity-0 transform-gpu" style="transform: perspective(1200px) rotateY(10deg);">
+              <div class="relative w-full h-80 rounded-2xl overflow-hidden border border-white/20 flex items-center justify-center bg-zinc-900">
+                <!-- Image with OnError Fallback -->
+                <img src="../assets/images/tri_frontier_nexus.jpg" onerror="this.style.display='none'; document.getElementById('s14-svg-fallback').style.display='flex';" class="w-full h-full object-cover" alt="Tri-Nexus" />
+                
+                <!-- Safe SVG Tri-Nexus Fallback (Guarantees zero broken icons!) -->
+                <div id="s14-svg-fallback" class="w-full h-full flex-col items-center justify-center space-y-3" style="display: none;">
+                  <svg class="w-24 h-24 glow-cyan" viewBox="0 0 100 100">
+                    <polygon points="50,15 90,85 10,85" fill="none" stroke="#38BDF8" stroke-width="4" />
+                    <circle cx="50" cy="15" r="7" fill="#FACC15" />
+                    <circle cx="90" cy="85" r="7" fill="#10B981" />
+                    <circle cx="10" cy="85" r="7" fill="#38BDF8" />
+                  </svg>
+                  <span class="text-xs text-kaiSky font-bold tracking-widest uppercase">TRI-FRONTIER NEXUS</span>
+                </div>
+              </div>
+              <div class="pt-4 border-t border-white/10 flex justify-between items-center text-sm">
+                <div>
+                  <span class="text-xs text-zinc-400 uppercase block font-bold">TRI-LAB POWER STRUGGLE</span>
+                  <span class="text-white font-black text-base">GOOGLE • ANTHROPIC • OPENAI</span>
+                </div>
+                <span class="px-3 py-1 rounded bg-kaiSky/20 text-kaiSky text-xs font-black">NEXUS</span>
+              </div>
+            </div>
+
+            <!-- Right: Zero Switching Friction & Monumental $0.00 -->
+            <div class="flex-1 h-[500px] flex flex-col justify-between py-4 font-mono">
+              <div id="s14-header" class="border-b border-white/10 pb-3 flex justify-between items-center text-sm opacity-0">
+                <span class="text-zinc-400 uppercase tracking-widest font-bold">THE FRONTIER MARKET DYNAMICS</span>
+                <span class="text-kaiEmerald font-black">ZERO SWITCHING FRICTION</span>
+              </div>
+
+              <div class="space-y-6 my-auto">
+                <div id="s14-meter-box" class="p-8 rounded-3xl border-2 border-kaiEmerald/60 bg-gradient-to-r from-kaiEmerald/20 via-transparent to-transparent flex items-center justify-between opacity-0 shadow-[0_0_50px_rgba(16,185,129,0.35)]">
+                  <div>
+                    <span class="text-sm text-kaiEmerald font-black uppercase tracking-wider block">AI SWITCHING FRICTION</span>
+                    <div class="text-9xl font-black bg-gradient-to-r from-emerald-400 to-cyan-300 bg-clip-text text-transparent tabular-num mt-1 glow-emerald">$0.00</div>
+                    <span class="text-sm text-zinc-200 block mt-2 font-bold">Developers will defect the instant quality slips behind the scenes.</span>
+                  </div>
+                  <span class="status-badge-emerald px-6 py-3 rounded-2xl text-sm font-black">ZERO LOCK-IN</span>
+                </div>
+
+                <p id="s14-desc" class="text-base text-zinc-200 leading-relaxed opacity-0">
+                  Anthropic leads in human voice. OpenAI leads in commodity Sol pricing. Google dominates output scale and software engineering. The frontier belongs to whoever ships best today.
+                </p>
+              </div>
+
+              <!-- Final Gavel Verdict Stamp -->
+              <div id="s14-verdict-box" class="flex justify-center opacity-0">
+                <span class="status-badge-red px-10 py-4 rounded-2xl text-xl font-black">
+                  DON'T MARRY THE MODEL: ENJOY THE HONEYMOON
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CMSUBS v4.8 SUBTITLE ENGINE (Y: 720px - 1080px) -->
+    <div class="absolute bottom-8 left-0 right-0 flex justify-center z-[60] pointer-events-none">
+      <div id="caption-container" class="max-w-[1280px] w-full px-12 py-5 rounded-3xl bg-[#020305]/95 backdrop-blur-3xl border border-kaiSky/30 shadow-[0_30px_80px_rgba(0,0,0,0.95)] opacity-0 transform-gpu">
+        <p id="caption-text" class="text-[28px] font-black text-center text-white leading-snug tracking-wide drop-shadow-md text-balance"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    gsap.registerPlugin(TextPlugin);
+    const TOTAL_DUR = 118.0; // 18 + 16 + 17 + 15 + 17 + 17 + 18 = 118.0s
+
+    // Timeline Exposure on window.__timelines["part2"]
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    function popBrandingBug(atTime, duration) {
+      tl.fromTo("#branding-bug",
+        { opacity: 0, scale: 0.8, y: -10 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.5)" },
+        atTime
+      );
+      tl.to("#branding-bug", { opacity: 0, duration: 0.35 }, atTime + duration - 0.35);
+    }
+
+    // =========================================================================
+    // 🎬 KINETIC CHOREOGRAPHY (118.0s TOTAL)
+    // ZERO PREPOPULATION: HEADINGS & ELEMENTS ENTER DYNAMICALLY
+    // =========================================================================
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 8: DEEPSWE v1.1 CODING SOVEREIGNTY (0.0s – 18.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(0.2, 17.5);
+
+    tl.set("#scene-8", { display: "flex", opacity: 1 }, 0.0);
+    
+    // Heading animates in dynamically
+    tl.fromTo("#s8-title-bar", { opacity: 0, y: -25 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.5);
+    tl.fromTo("#s8-podium-pedestal", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.0, duration: 0.7, ease: "back.out(2)" }, 2.0);
+    tl.fromTo("#s8-trajectory-bars", { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 0.6 }, 4.0);
+
+    // 77.9% Argon Winner Fill
+    tl.to("#s8-fill-argon", { width: "100%", duration: 2.5, ease: "power3.out" }, 5.0);
+    tl.fromTo("#s8-status-badge", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1.0, duration: 0.4, ease: "back.out(1.8)" }, 11.5);
+
+    // 2-Second Dynamism
+    tl.to("#s8-podium-pedestal", { rotateY: 15, duration: 2.5, yoyo: true, repeat: 2, ease: "sine.inOut" }, 12.0);
+
+    tl.to("#scene-8", { opacity: 0, duration: 0.4, ease: "power2.in" }, 17.6);
+    tl.set("#scene-8", { display: "none" }, 18.0);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 9: ARTIFICIAL ANALYSIS EMBLEM & DUAL DIALS (18.0s – 34.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(18.2, 15.5);
+
+    tl.set("#scene-9", { display: "flex", opacity: 1 }, 18.0);
+    tl.fromTo("#s9-emblem-polaroid", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" }, 18.5);
+    
+    // Heading animates in dynamically
+    tl.fromTo("#s9-dial-title", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5 }, 19.5);
+    tl.fromTo("#s9-dials-rig", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1.0, duration: 0.6 }, 21.0);
+
+    // Dials Fill
+    tl.to("#s9-dial-argon-arc", { strokeDashoffset: 147, duration: 2.0, ease: "power2.out" }, 22.0);
+    tl.to("#s9-dial-opus-arc", { strokeDashoffset: 131, duration: 2.0, ease: "power2.out" }, 22.0);
+    tl.fromTo("#s9-delta-box", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.0, duration: 0.5, ease: "back.out(2)" }, 24.5);
+    tl.to("#s9-stamp", { opacity: 1, duration: 0.4 }, 27.5);
+
+    tl.to("#scene-9", { opacity: 0, duration: 0.4, ease: "power2.in" }, 33.6);
+    tl.set("#scene-9", { display: "none" }, 34.0);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 10: HARVEY LEGAL AGENT BLOWOUT (34.0s – 51.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(34.2, 16.5);
+
+    tl.set("#scene-10", { display: "flex", opacity: 1 }, 34.0);
+    tl.fromTo("#s10-header", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5 }, 34.5);
+    tl.fromTo("#s10-astra-spire", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 36.5);
+    tl.fromTo("#s10-caliper-box", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.0, duration: 0.6, ease: "back.out(2)" }, 38.5);
+    tl.fromTo("#s10-argon-spire", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 40.5);
+    tl.fromTo("#s10-status-bar", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1.0, duration: 0.4 }, 44.5);
+
+    tl.to("#scene-10", { opacity: 0, duration: 0.4, ease: "power2.in" }, 50.6);
+    tl.set("#scene-10", { display: "none" }, 51.0);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 11: DEFENSIVE CYBERSECURITY SHIELD (51.0s – 66.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(51.2, 14.5);
+
+    tl.set("#scene-11", { display: "flex", opacity: 1 }, 51.0);
+    tl.fromTo("#s11-cyber-strip", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.65, ease: "power3.out" }, 51.5);
+    tl.fromTo("#s11-header", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4 }, 52.5);
+    tl.fromTo("#s11-shield-svg", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1.0, duration: 0.6 }, 53.5);
+
+    // Deflected attack beams flash
+    tl.fromTo("#s11-red-beam1", { opacity: 0 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 5 }, 55.0);
+    tl.fromTo("#s11-red-beam2", { opacity: 0 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 5 }, 55.5);
+    tl.fromTo("#s11-telemetry", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, 57.0);
+
+    tl.to("#scene-11", { opacity: 0, duration: 0.4, ease: "power2.in" }, 65.6);
+    tl.set("#scene-11", { display: "none" }, 66.0);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 12: THE FAIRWIND MECHANICAL CYBER IRIS (66.0s – 83.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(66.2, 16.5);
+
+    tl.set("#scene-12", { display: "flex", opacity: 1 }, 66.0);
+    tl.fromTo("#s12-header", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4 }, 66.5);
+
+    // Iris rings start rotating
+    tl.fromTo("#s12-iris-outer", { opacity: 0 }, { opacity: 1, rotation: 360, transformOrigin: "100px 100px", duration: 8.0, ease: "none" }, 67.0);
+    tl.fromTo("#s12-iris-inner", { opacity: 0 }, { opacity: 1, rotation: -360, transformOrigin: "100px 100px", duration: 8.0, ease: "none" }, 67.0);
+
+    // Blast doors slam shut at 69.5s
+    tl.fromTo("#s12-door-left", { opacity: 0, x: -350 }, { opacity: 1, x: 0, duration: 0.6, ease: "power4.out" }, 69.5);
+    tl.fromTo("#s12-door-right", { opacity: 0, x: 350 }, { opacity: 1, x: 0, duration: 0.6, ease: "power4.out" }, 69.5);
+
+    tl.to("#s12-padlock-icon", { opacity: 1, duration: 0.3 }, 70.5);
+    tl.fromTo("#s12-txt-title", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 }, 71.5);
+    tl.fromTo("#s12-txt-desc", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 72.5);
+    tl.fromTo("#s12-stamp-box", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1.0, duration: 0.4, ease: "back.out(2)" }, 75.0);
+
+    tl.to("#scene-12", { opacity: 0, duration: 0.4, ease: "power2.in" }, 82.6);
+    tl.set("#scene-12", { display: "none" }, 83.0);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 13: 3D THERMAL CONTRACT & PRICE DOUBLING WARNING (83.0s – 100.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(83.2, 16.5);
+
+    tl.set("#scene-13", { display: "flex", opacity: 1 }, 83.0);
+    tl.fromTo("#s13-receipt", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 83.5);
+    tl.fromTo("#s13-header", { opacity: 0, y: -15 }, { opacity: 1, y: 0, duration: 0.4 }, 84.5);
+    tl.fromTo("#s13-slabs", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1.0, duration: 0.5 }, 86.0);
+    tl.fromTo("#s13-callout", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, 89.0);
+    tl.fromTo("#s13-status-box", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1.0, duration: 0.4, ease: "back.out(2)" }, 92.0);
+
+    tl.to("#scene-13", { opacity: 0, duration: 0.4, ease: "power2.in" }, 99.6);
+    tl.set("#scene-13", { display: "none" }, 100.0);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // SCENE 14: THE 3-WAY TRI-NEXUS & FINAL GAVEL (100.0s – 118.0s)
+    // ─────────────────────────────────────────────────────────────────────────
+    popBrandingBug(100.2, 17.5);
+
+    tl.set("#scene-14", { display: "flex", opacity: 1 }, 100.0);
+    tl.fromTo("#s14-diamond-img", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.7, ease: "power3.out" }, 100.5);
+    tl.fromTo("#s14-header", { opacity: 0, y: -15 }, { opacity: 1, y: 0, duration: 0.4 }, 101.5);
+    tl.fromTo("#s14-meter-box", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1.0, duration: 0.6, ease: "back.out(2)" }, 103.0);
+    tl.fromTo("#s14-desc", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 }, 106.0);
+    tl.fromTo("#s14-verdict-box", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1.0, duration: 0.5, ease: "back.out(2)" }, 110.0);
+
+    // Screen shudder
+    tl.to("#stage-bounds", { y: 6, duration: 0.08, yoyo: true, repeat: 3 }, 110.45);
+
+
+    // =========================================================================
+    // CMSUBS v4.8 DYNAMIC SUBTITLES (0.0s – 118.0s)
+    // Contextual & kinetic: rendered cleanly without overwhelming screen metrics
+    // =========================================================================
+    const SUBTITLES = [
+      // Scene 8 (0.0s - 18.0s)
+      { t: 0.4, d: 8.5, text: "In rigorous software engineering, Gemini 4 Argon took first place on DeepSWE at <mark class='emerald'>77.9%</mark>—" },
+      { t: 9.2, d: 8.4, text: "—surpassing <mark class='amber'>Claude Opus 5.5 (74.2%)</mark> and <mark class='sky'>GPT-6 Astra (74.1%)</mark>." },
+
+      // Scene 9 (18.0s - 34.0s)
+      { t: 18.4, d: 7.6, text: "However, independent testing on the Artificial Analysis Intelligence Index shows a <mark class='amber'>nuanced picture</mark>." },
+      { t: 26.4, d: 7.2, text: "Argon scored 53—matching Astra, but trailing <mark class='amber'>Opus 5.5's peak score of 58</mark>." },
+
+      // Scene 10 (34.0s - 51.0s)
+      { t: 34.4, d: 8.2, text: "Where Argon delivered a total blowout was <mark class='emerald'>complex professional knowledge work</mark>." },
+      { t: 43.0, d: 7.6, text: "On Harvey Legal, Argon achieved <mark class='emerald'>19.6%</mark>—obliterating Astra's 5.4% by nearly <mark class='emerald'>four times</mark>." },
+
+      // Scene 11 (51.0s - 66.0s)
+      { t: 51.4, d: 7.2, text: "In cybersecurity, Argon achieved an unprecedented <mark class='emerald'>0.7% attack success rate</mark> on Gray Swan—" },
+      { t: 59.0, d: 6.6, text: "—making it the <mark class='emerald'>most secure model</mark> out of thirteen frontier architectures." },
+
+      // Scene 12 (66.0s - 83.0s)
+      { t: 66.4, d: 8.2, text: "Here is the catch. If you open Google AI Studio today, <mark class='red'>Argon is nowhere to be found</mark>." },
+      { t: 75.0, d: 7.6, text: "Google is rolling it out exclusively through their <mark class='red'>Fairwind defense program</mark> to vetted partners." },
+
+      // Scene 13 (83.0s - 100.0s)
+      { t: 83.4, d: 8.2, text: "Developers must also read the fine print on pricing. That <mark class='amber'>$2 input price is introductory</mark>." },
+      { t: 92.0, d: 7.6, text: "Standard pricing doubles to <mark class='red'>$4 input and $20 output</mark>—matching Opus 5.5 dollar for dollar." },
+
+      // Scene 14 (100.0s - 118.0s)
+      { t: 100.4, d: 8.6, text: "With Anthropic leading on voice, OpenAI on Sol commodity rates, and Google on output scale—" },
+      { t: 109.4, d: 8.2, text: "—switching costs are <mark class='emerald'>zero</mark>. Enjoy the competition: the frontier belongs to whoever ships best today." }
+    ];
+
+    SUBTITLES.forEach(c => {
+      tl.set("#caption-text", { innerHTML: c.text }, c.t);
+      tl.fromTo("#caption-container",
+        { opacity: 0, y: 16, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.5)" },
+        c.t
+      );
+      tl.to("#caption-container", { opacity: 0, y: 10, duration: 0.30, ease: "power2.in" }, c.t + c.d - 0.30);
+    });
+
+    // HyperFrames Preview Event Interceptors (Prevents pause bubbling across all channels)
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.addEventListener('pause', (e) => e.stopPropagation(), true);
+      audio.addEventListener('ended', (e) => e.stopPropagation(), true);
+    });
+
+    // Expose timeline under "part2" composition ID
+    window.__timelines["part2"] = tl;
+  </script>
+</body>
+</html>
