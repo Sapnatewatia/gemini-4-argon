@@ -1,4 +1,4 @@
-name: Render Video Pipeline (30 FPS)
+name: Gemini-4-argon
 
 on:
   workflow_dispatch:
